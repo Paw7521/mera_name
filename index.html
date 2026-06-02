@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Name Website</title>
+<title>Curious JIYA</title>
 
 <style>
 body{
-    font-family:Arial;
+    font-family: Arial, sans-serif;
     text-align:center;
     margin:0;
+    background:#f8f8f8;
 }
 
 #welcomeScreen{
@@ -22,34 +23,68 @@ body{
 
 #mainContent{
     display:none;
-    margin-top:100px;
+    margin-top:80px;
+    padding:20px;
 }
 
 button{
     padding:12px 25px;
     font-size:18px;
     cursor:pointer;
+    border:none;
+    border-radius:8px;
+}
+
+.wave-name{
+    font-size:60px;
+    font-weight:bold;
+    margin-top:30px;
+    animation:waveEntry 2.5s ease-out forwards;
+}
+
+@keyframes waveEntry{
+    0%{
+        opacity:0;
+        transform:translateX(-300px);
+    }
+    30%{
+        opacity:1;
+        transform:translateX(120px);
+    }
+    55%{
+        transform:translateX(-70px);
+    }
+    75%{
+        transform:translateX(30px);
+    }
+    100%{
+        transform:translateX(0);
+    }
+}
+
+.message{
+    max-width:800px;
+    margin:25px auto;
+    line-height:1.9;
+    font-size:18px;
 }
 </style>
-
 </head>
+
 <body>
 
-<!-- Welcome Screen -->
-
 <div id="welcomeScreen">
+    <h1>Welcome Curious JIYA 😊</h1>
 
-    <h1>Welcome curious JIYA 😊</h1>
-
-    <p>कुछ अलग देखने के लिए Curious पर क्लिक करें</p>
+    <p>कुछ अलग देखने के लिए Continue पर क्लिक करें</p>
 
     <button onclick="startWebsite()">
         Continue
     </button>
-
 </div>
 
-<!-- Main Content -->
+<!-- अगर music.mp3 अपलोड करोगे तो यह काम करेगा -->
+<audio id="bgmusic" src="music.mp3"></audio>
 
 <div id="mainContent">
 
@@ -63,58 +98,55 @@ button{
         Click Here
     </button>
 
-    <h1 id="result"></h1>
+    <div id="result"></div>
 
 </div>
-
-<div id="player"></div>
 
 <script>
 
 function startWebsite(){
 
-    // Welcome हटाओ
     document.getElementById("welcomeScreen").style.display="none";
 
-    // Main Content दिखाओ
     document.getElementById("mainContent").style.display="block";
 
-    // Music Start
-    document.getElementById("player").innerHTML = `
-        <iframe
-            width="0"
-            height="0"
-            src="https://www.youtube.com/embed/wTgrZE9RWNY?autoplay=1&loop=1&playlist=wTgrZE9RWNY"
-            allow="autoplay"
-        ></iframe>
-    `;
+    // Music Play
+    const music = document.getElementById("bgmusic");
+
+    music.play().catch(err=>{
+        console.log("Autoplay blocked:", err);
+    });
 }
 
 function showName(){
 
-    document.getElementById("result").innerText = "Pawan";
-
-}
-    function showName(){
-
     document.getElementById("result").innerHTML = `
-        <h1>Pawan</h1>
 
-        <p style="max-width:800px; margin:20px auto; line-height:1.8; font-size:18px;">
-            अब बैच के लोगों से कोई सवाल नहीं है। एक और व्यक्ति का जवाब आया,
-            कसम से रुला ही दिया। ऐसी बातें कीं कि आपने वेटिंग लिस्ट में ऐसा डाल दिया
+        <div class="wave-name">
+            Pawan
+        </div>
+
+        <div class="message">
+
+            अब बैच के लोगों से कोई सवाल नहीं है।
+            एक और व्यक्ति का जवाब आया,
+            कसम से रुला ही दिया।
+
+            ऐसी बातें कीं कि आपने वेटिंग लिस्ट में ऐसा डाल दिया
             कि दुबारा रिस्पॉन्ड ही नहीं किया...
 
             खैर, आपकी बातें और व्यवहार मुझे अच्छे लगे।
-            विषय पर थोड़ा चर्चा हो जाता तो शायद थोड़ी शांति मिल जाती,
-            क्योंकि आपसे पूछ भी लिया है, तो बिना जाने शांति कहाँ मिलती है। 😊
-        </p>
-    `;
 
+            विषय पर थोड़ा चर्चा हो जाता तो शायद थोड़ी शांति मिल जाती,
+            क्योंकि आपसे पूछ भी लिया है,
+            तो बिना जाने शांति कहाँ मिलती है। 😊
+
+        </div>
+
+    `;
 }
 
 </script>
-   
 
 </body>
 </html>
